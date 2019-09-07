@@ -1,0 +1,13 @@
+<div class="card-wrapper">
+  <mat-card *ngIf="dayForecast">
+      <mat-grid-list cols="3" rowHeight="4:1">
+          <mat-grid-tile rowspan="3">
+              <img class="card-image" [src]="'./assets/weather-icons/' + dayForecast.icon + '.png'">
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">{{dayForecast.day}}</mat-grid-tile>
+          <mat-grid-tile colspan="2">{{dayForecast.summary}}</mat-grid-tile>
+          <mat-grid-tile>Min: {{dayForecast.minTemperature}}</mat-grid-tile>
+          <mat-grid-tile>Max: {{dayForecast.maxTemperature}}</mat-grid-tile>
+      </mat-grid-list>
+  </mat-card>
+</div>

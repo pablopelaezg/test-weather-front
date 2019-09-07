@@ -1,0 +1,13 @@
+.card-wrapper {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.card-title {
+  display: inline;
+  text-align: center;
+}
+
+.card-image {
+  width: 80%
+}

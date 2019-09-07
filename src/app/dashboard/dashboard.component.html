@@ -1,0 +1,41 @@
+<h2 class="dashboard-title">Welcome to MultiCast!</h2>
+
+<p style="text-align: center">Please select the Forecast provider, your city and temperature unit</p>
+
+<div class="options-wrapper">
+    <mat-form-field>
+        <mat-label>Forecast Source</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let source of forecastSources" [value]="source.id">
+            {{source.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let city of cities" [value]="city.id">
+            {{city.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Temperature Unit</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let unit of units" [value]="unit.id">
+            {{unit.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button (click)="getForecast()" class="options-wrapper">Get Forecast</button>
+</div>
+
+
+<app-week-item [dayForecast]="forecast.todayForecast" *ngIf="forecast"></app-week-item>
+
+<div>
+  <app-week [weekForecast]="forecast.nextDaysForecast" *ngIf="forecast"></app-week>
+</div>
