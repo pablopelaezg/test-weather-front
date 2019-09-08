@@ -1,43 +1,34 @@
 import {Forecast} from '../model/forecast';
 import {SelectionElement} from '../model/selectionelement';
+import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export class ForecastService {
 
-    constructor() {}
+    constructor(private http: HttpClient) {}
 
-    getForecast(source: string, city: string, unit: string): Forecast {
-        return {
-            todayForecast: {
-                day: 'wednesday',
-                icon: 'cloudy',
-                minTemperature: '10ºC',
-                maxTemperature: '20ºC',
-                summary: 'test summary'
-            },
-            nextDaysForecast: [
-                {
-                    day: 'thrusday',
-                    icon: 'sunny',
-                    minTemperature: '10ºC',
-                    maxTemperature: '20ºC',
-                    summary: 'test summary'
-                },
-                {
-                    day: 'friday',
-                    icon: 'rainy',
-                    minTemperature: '10ºC',
-                    maxTemperature: '20ºC',
-                    summary: 'test summary'
-                }
-            ]
-        };
+    getForecast(source: string, city: string, unit: string): Observable<Forecast> {
+        return this.http.get(environment.apiUrl, {
+          params: {
+            source,
+            city,
+            unit
+          }
+        });
     }
 
     getForecastSources(): Array<SelectionElement> {
       return [
         {
-          name: 'Forecast.io',
-          id: 'FORECAST'
+          name: 'DarkSky',
+          id: 'DARKSKY'
+        },
+        {
+          name: 'ApiXU',
+          id: 'APIXU'
         }
       ];
     }
@@ -53,8 +44,8 @@ export class ForecastService {
           id: 'SAO_PAULO',
         },
         {
-          name: 'Madrid',
-          id: 'MADRID'
+          name: 'New York',
+          id: 'NEW_YORK'
         }
       ];
     }

@@ -1,41 +1,57 @@
-<h2 class="dashboard-title">Welcome to MultiCast!</h2>
+<h2 class="title">W E A T H E R C A S T</h2>
 
 <p style="text-align: center">Please select the Forecast provider, your city and temperature unit</p>
 
-<div class="options-wrapper">
-    <mat-form-field>
-        <mat-label>Forecast Source</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let source of forecastSources" [value]="source.id">
-            {{source.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+<div class="options-wrapper" [formGroup]="form">
+      <div class="option-select">
+        <mat-form-field>
+          <mat-label>Forecast Source</mat-label>
+          <mat-select [(ngModel)]="source" formControlName="source">
+            <mat-option *ngFor="let source of forecastSources" [value]="source.id">
+              {{source.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <mat-label>City</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let city of cities" [value]="city.id">
-            {{city.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="option-select">
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <mat-select [(ngModel)]="city" formControlName="city">
+            <mat-option *ngFor="let city of cities" [value]="city.id">
+              {{city.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <mat-label>Temperature Unit</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let unit of units" [value]="unit.id">
-            {{unit.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="option-select">
+        <mat-form-field>
+          <mat-label>Temperature Unit</mat-label>
+          <mat-select [(ngModel)]="unit" formControlName="unit">
+            <mat-option *ngFor="let unit of units" [value]="unit.id">
+              {{unit.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <button mat-raised-button (click)="getForecast()" class="options-wrapper">Get Forecast</button>
+
+
+</div>
+
+<div class="submit-button">
+  <button mat-raised-button (click)="getForecast()" [disabled]="!form.valid" >Get Forecast</button>
 </div>
 
 
-<app-week-item [dayForecast]="forecast.todayForecast" *ngIf="forecast"></app-week-item>
+<div>
+  <h3 class="title" *ngIf="forecast">Today</h3>
+  <app-week-item [dayForecast]="forecast.todayForecast" *ngIf="forecast"></app-week-item>
+</div>
+
 
 <div>
+  <h3 class="title" *ngIf="forecast">Next Days</h3>
   <app-week [weekForecast]="forecast.nextDaysForecast" *ngIf="forecast"></app-week>
 </div>

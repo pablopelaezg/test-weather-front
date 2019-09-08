@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {WeekComponent} from './dashboard/week/week.component';
 import {WeekItemComponent} from './dashboard/week/week-item/week-item.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ForecastService} from './services/forecast.service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
@@ -25,6 +25,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatSelectModule,

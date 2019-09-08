@@ -9,5 +9,23 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+@media (max-width: 1200px) {
+
+  body {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+}
+
+@media (max-width: 992px) {
+
+  body {
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+}
+
 
 
